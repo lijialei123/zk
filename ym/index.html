@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    	*{
+    		margin: 0;
+    		padding: 0;
+    	}
+    	#div{
+    		width: 400px;
+    		height: 600px;
+    		border: 1px solid #ccc;
+    	}
+    	i{
+    		color: red;
+    	}
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+	<div id="div"></div>
+<input type="text" id="int">
+<input type="submit" id="but">
+
+<script>
+    $("#but").click(function(){
+        var val=$("#int").val()
+        console.log(val)
+        $.ajax({
+            url:"http://localhost:3000",
+            type:"POST",
+            data:{name:val},
+            success:function(e){
+                console.log(e)
+                var str=""
+                for(var i in e){
+                    var t=e[i]
+                    console.log(t)
+                    for(var i in t){
+                        str+='<p>'+t[i].name+' <i id="sc">x</i>'+'</p>'+'<br>'
+                    }
+                }
+                 $("#sc").click(function(){
+    				$(this).parent(p).remove()
+   				 })
+
+                $('#div').html(str)
+            }
+
+        })
+
+    })
+    
+   </script>
+</body>
+</html>
